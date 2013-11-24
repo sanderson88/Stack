@@ -5,7 +5,7 @@ package main.stack;
  * 
  * @author Sean
  */
-public class Stack {
+public class Stack<E> {
 	private static final int DEFAULT_SIZE = 5;
 	private Object [] stack;
 	private int position = -1;
@@ -43,10 +43,10 @@ public class Stack {
 	 * @return The last object on the stack.
 	 * @throws StackUnderFlowException
 	 */
-	public Object pop() throws StackUnderFlowException {
-		Object returnObject;
+	public E pop() throws StackUnderFlowException {
+		E returnObject;
 		if (position >= 0) {
-			returnObject = stack[position];
+			returnObject = (E)stack[position];
 			stack[position--] = null;
 			return returnObject;
 		} else {
@@ -59,16 +59,16 @@ public class Stack {
 	 * @return The last object on the stack.
 	 * @throws StackUnderFlowException
 	 */
-	public Object peek() throws StackUnderFlowException {
+	public E peek() throws StackUnderFlowException {
 		if(position >= 0) {
-			return stack[position];
+			return (E)stack[position];
 		} else {
 			throw new StackUnderFlowException();
 		}
 	}
 	
 	@SuppressWarnings("serial")
-	public class StackUnderFlowException extends RuntimeException {
+	public static class StackUnderFlowException extends RuntimeException {
 		public StackUnderFlowException() {}
 		
 		public StackUnderFlowException(String message) {
@@ -77,7 +77,7 @@ public class Stack {
 	}
 
 	@SuppressWarnings("serial")
-	public class StackOverFlowException extends RuntimeException {
+	public static class StackOverFlowException extends RuntimeException {
 		public StackOverFlowException() {}
 		
 		public StackOverFlowException(String message) {

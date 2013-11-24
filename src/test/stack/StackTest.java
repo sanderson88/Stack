@@ -1,7 +1,7 @@
 package test.stack;
 
 import static org.junit.Assert.*;
-import main.stack.Stack;
+import main.stack.*;
 
 import org.junit.Before;
 import org.junit.Test;
