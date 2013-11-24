@@ -8,6 +8,7 @@ import org.junit.Test;
 
 public class StackTest {
 	Stack testStack;
+	Stack smallStack;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -68,6 +69,34 @@ public class StackTest {
 	
 	@Test(expected=Stack.StackUnderFlowException.class)
 	public void peekAnEmptyStack() {
+		testStack.peek();
+	}
+	
+	@Test
+	public void smallStackBasic() {
+		testStack = new Stack(3);
+		pushNumberOfObjects(3);
+		assertEquals(2, testStack.peek());
+		assertEquals(2, testStack.pop());
+		assertEquals(1, testStack.pop());
+		assertEquals(0, testStack.pop());
+	}
+	
+	@Test(expected=Stack.StackOverFlowException.class)
+	public void pushTooManyElementsToSmallStack() {
+		testStack = new Stack(3);
+		pushNumberOfObjects(4);
+	}
+	
+	@Test(expected=Stack.StackUnderFlowException.class)
+	public void popAnEmptyStackToSmallStack() {
+		testStack = new Stack(3);
+		testStack.pop();
+	}
+	
+	@Test(expected=Stack.StackUnderFlowException.class)
+	public void peekAnEmptyStackToSmallStack() {
+		testStack = new Stack(3);
 		testStack.peek();
 	}
 }
